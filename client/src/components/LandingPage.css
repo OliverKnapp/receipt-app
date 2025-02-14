@@ -1,0 +1,545 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    min-height: 100vh;
+    width: 100%; /* Ensure full width */
+}
+
+.landing-page.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.landing-page.dark-mode .year-label,
+.landing-page.dark-mode .month-label,
+.landing-page.dark-mode .receipt-roll span,
+.landing-page.dark-mode .add-receipt-button {
+    color: #ffffff;
+}
+
+.landing-page.dark-mode .receipt-card,
+.landing-page.dark-mode .receipt-editor-container {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.landing-page.dark-mode .add-receipt-button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.landing-page.dark-mode .receipt-editor input {
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+}
+
+.year-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.year-label {
+    flex: 0 0 100px; /* Fixed width for year labels */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    margin-left: 0; /* Remove additional margin */
+}
+
+.timeline-line {
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    margin-bottom: 10px;
+}
+
+.months-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    flex: 1;
+    margin-left: 20px; /* Add margin to separate from year labels */
+}
+
+.month-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    position: relative; /* Add relative positioning for the pseudo-element */
+}
+
+.month-label {
+    flex: 0 0 100px; /* Fixed width for month labels */
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    color: gray;
+    margin-left: 0; /* Remove additional margin */
+    position: relative; /* Add relative positioning for the pseudo-element */
+}
+
+.month-label.has-receipts {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    position: relative;
+}
+
+.month-label.has-receipts::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background-color: black;
+    top: 100%;
+    height: calc(100% + 10px); /* Adjust the height to match the receipts container */
+    display: none; /* Initially hidden */
+}
+
+.month-label.has-receipts.visible::before {
+    display: block; /* Show when the month is visible */
+}
+
+.month-label.has-receipts::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background-color: black;
+    top: 100%;
+    height: var(--line-height, 0); /* Use CSS variable for height */
+    transition: height 0.3s;
+}
+
+.landing-page.dark-mode .month-label.has-receipts::after {
+    background-color: white;
+}
+
+.month-label.has-receipts.visible::after {
+    height: var(--line-height, calc(100% + 10px)); /* Adjust the height to match the receipts container */
+}
+
+.month-label.no-receipts {
+    color: gray;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.year-select-container {
+    margin-bottom: 20px;
+}
+
+.year-select-container label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.year-select-container select {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.receipts-container {
+    display: flex;
+    flex-direction: row; /* Display receipts in a row */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    align-items: flex-start;
+    margin-top: 10px;
+    width: 100%;
+    margin-left: 20px; /* Add margin to separate from month labels */
+}
+
+.receipt-year-header {
+    font-size: 1.5em;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.receipt-month-header {
+    font-size: 1.2em;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.receipt-card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.months-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 15px;
+    margin-top: 10px;
+    justify-items: center;
+}
+
+.month-box {
+    width: 210px;
+    height: 297px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    border-radius: 5px;
+}
+
+.month-box:hover {
+    transform: scale(1.05);
+}
+
+.month-label, .invoice-count {
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.month-box:hover .month-label, 
+.month-box:hover .invoice-count {
+    color: gray;
+}
+
+.paper {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    transition: all 0.2s ease;
+}
+
+.single {
+    z-index: 3;
+}
+
+.stack-2 {
+    top: 3px;
+    left: 3px;
+    z-index: 2;
+}
+
+.stack-3 {
+    top: 6px;
+    left: 6px;
+    z-index: 1;
+}
+
+.empty {
+    background: transparent;
+    border: 2px dashed darkgray;
+    box-shadow: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.add-receipt-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.add-receipt-button.animating {
+  animation: growToReceipt 0.5s forwards;
+}
+
+.add-receipt-button:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+
+@keyframes growToReceipt {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    width: 430px;
+    height: 515.5px; /* Adjust the height to match the receipt editor */
+    bottom: 20px;
+    right: 20px;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.receipt-editor-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: none; /* Initially hidden */
+  z-index: 20; /* Ensure the receipt editor is above the overlay */
+}
+
+.receipt-editor-container.visible {
+  display: block; /* Show when the animation is complete */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000;
+}
+
+.month-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background-color: black;
+  top: 100%;
+  display: none; /* Initially hidden */
+}
+
+.month-line.visible {
+  display: block; /* Show when the month is visible */
+}
+
+.month-line.hidden {
+  display: none; /* Hide when the month is not visible */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: none;
+}
+
+.overlay.visible {
+  display: block;
+}
+
+.receipt-card, .receipt-editor {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.receipt-card.collapsing, .receipt-editor.collapsing {
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+.receipt-card.expanding, .receipt-editor.expanding {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.receipts-container.collapsing, .months-container.collapsing, .year-section.collapsing {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.receipts-container.expanding, .months-container.expanding, .year-section.expanding {
+  max-height: 1000px; /* Adjust as needed */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.receipts-container.collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(90deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.receipts-container.expanded {
+  transform: rotateY(0deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.receipt-roll {
+  width: 350px; /* Adjust this width to match the normal receipt width */
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 20px; /* Adjust this margin to match the normal receipt left margin */
+  transition: transform 0.5s ease-in-out;
+}
+
+.receipt-roll:hover {
+  transform: scale(1.05);
+}
+
+.receipt-roll span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  font-family: 'Courier New', Courier, monospace; /* Match the font to the receipt number */
+}
+
+.landing-page.dark-mode .receipt-roll {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.landing-page.dark-mode .receipt-roll span {
+  color: #fff;
+}
+
+.receipts-container.collapsing {
+  animation: flowOut 0.5s forwards;
+}
+
+.receipts-container.expanding {
+  animation: flowIn 0.5s forwards;
+}
+
+@keyframes flowOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+@keyframes flowIn {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.receipt-card {
+  background-color: #fff;
+  color: #000;
+}
+
+.receipt-editor {
+  background-color: #fff;
+  color: #000;
+}
+
+.landing-page.dark-mode .receipt-card {
+  background-color: #333;
+  color: #fff;
+}
+
+.landing-page.dark-mode .receipt-editor {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+
+.landing-page.dark-mode .dark-mode-toggle {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.landing-page.dark-mode .dark-mode-toggle:hover {
+  background-color: #444;
+}

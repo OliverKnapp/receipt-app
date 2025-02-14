@@ -1,0 +1,101 @@
+.receipt-card {
+  width: 350px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+  font-family: 'Courier New', Courier, monospace;
+  position: relative;
+  cursor: pointer;
+}
+
+.receipt-card:hover {
+  transform: scale(1.05);
+}
+
+.receipt-card.selected {
+  border: 2px solid #007bff; /* Example border color for selected state */
+  background-color: #e6f7ff; /* Example background color for selected state */
+}
+
+.receipt-card p, .invoice-number, .service-row span, .amount, .dates p {
+  font-size: 18px; /* Same size for all text */
+  font-weight: normal; /* Same font weight for all text */
+}
+
+.receipt-card p {
+  margin: 10px 0;
+}
+
+.receipt-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.receipt-card li {
+  font-size: 18px;
+}
+
+.product-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.products-list {
+  margin-bottom: 10px;
+}
+
+.location-info {
+  display: flex;
+  justify-content: center;
+}
+
+.receipt-card.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.dotted-line {
+  border: none;
+  border-top: 1px dashed #ccc; /* Change from dotted to solid */
+  margin: 10px 0;
+}
+
+.customer-info p {
+  margin: 2px 0; /* Reduce space between customer information */
+}
+
+.dates {
+  margin-top: 30px; /* Add space between the dates and the amounts */
+}
+
+.service-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-description {
+  text-align: left;
+}
+
+.service-amount {
+  text-align: right;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.amount-label {
+  text-align: left;
+}
+
+.amount-value {
+  text-align: right;
+}

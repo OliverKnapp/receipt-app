@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "date": "",
+    "invoiceNumber": "",
+    "servicePeriod": "",
+    "services": [],
+    "taxRate": 20,
+    "amountWithoutTax": 0,
+    "amountWithTax": 0,
+    "customerName": "a",
+    "customerAddress": "",
+    "district": "",
+    "city": ""
+  },
+  {
+    "id": 2,
+    "date": "",
+    "invoiceNumber": "",
+    "servicePeriod": "",
+    "services": [],
+    "taxRate": 20,
+    "amountWithoutTax": 0,
+    "amountWithTax": 0,
+    "customerName": "a",
+    "customerAddress": "",
+    "district": "",
+    "city": ""
+  },
+  {
+    "id": 8
+  },
+  {
+    "id": 10
+  },
+  {
+    "id": 11,
+    "date": "",
+    "invoiceNumber": "",
+    "servicePeriod": "",
+    "services": [],
+    "taxRate": 20,
+    "amountWithoutTax": 0,
+    "amountWithTax": 0,
+    "customerName": "",
+    "customerAddress": "",
+    "district": "",
+    "city": ""
+  },
+  {
+    "id": 17
+  },
+  {
+    "id": 19
+  },
+  {
+    "id": 21
+  },
+  {
+    "id": 23
+  },
+  {
+    "id": 25
+  },
+  {
+    "id": 27
+  },
+  {
+    "id": 29
+  },
+  {
+    "id": 31
+  },
+  {
+    "id": 33
+  },
+  {
+    "id": 39
+  },
+  {
+    "id": 40,
+    "date": "2025-02-12",
+    "servicePeriod": "",
+    "services": [],
+    "taxRate": 20,
+    "amountWithoutTax": 0,
+    "amountWithTax": 0,
+    "customerName": "",
+    "customerAddress": "",
+    "district": "",
+    "city": ""
+  }
+]

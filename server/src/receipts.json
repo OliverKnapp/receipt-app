@@ -1,0 +1,25 @@
+[
+  {
+    "id": 3,
+    "date": "2025-02-12",
+    "invoiceNumber": "INV-3",
+    "servicePeriod": "2025-02",
+    "services": [
+      {
+        "description": "Buntstifte",
+        "amount": 120
+      },
+      {
+        "description": "Malkurs",
+        "amount": 30
+      }
+    ],
+    "taxRate": 20,
+    "amountWithoutTax": 150,
+    "amountWithTax": 180,
+    "customerName": "VLCK",
+    "customerAddress": "Kindergarten",
+    "district": "1220",
+    "city": "Wien"
+  }
+]

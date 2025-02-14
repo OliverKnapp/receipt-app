@@ -1,0 +1,5 @@
+node_modules/
+client/node_modules/
+server/node_modules/
+.bfg-report/x
+bfg-1.13.0.jar
